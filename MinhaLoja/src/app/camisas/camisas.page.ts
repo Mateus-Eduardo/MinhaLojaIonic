@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BdtempService } from '../services/bdtemp.service';
 
 @Component({
   selector: 'app-camisas',
@@ -10,44 +11,50 @@ export class CamisasPage implements OnInit {
 
   listaProdutos = [
     {
-      nome: "Camisa Casual Azul",
+      nome: "Camisa Casual Laranja",
       descricao: "Camisa casual de cor azul com detalhes elegantes.",
       preco: 89.99,
-      foto: "caminho_da_imagem"
+      foto: '../../assets/img/camisaLaranja.jpg'
     },
     {
       nome: "Camisa Listrada",
       descricao: "Camisa listrada em tons de preto e branco.",
       preco: 79.99,
-      foto: "caminho_da_imagem"
+      foto: '../../assets/img/camisaLaranja.jpg'
     },
     {
       nome: "Camisa Estampada",
       descricao: "Camisa estampada com padrão geométrico.",
       preco: 99.99,
-      foto: "caminho_da_imagem"
+      foto: '../../assets/img/camisaLaranja.jpg'
     },
     {
       nome: "Camisa Polo",
       descricao: "Camisa polo clássica em cores variadas.",
       preco: 69.99,
-      foto: "caminho_da_imagem"
+      foto: '../../assets/img/camisaLaranja.jpg'
     },
     {
       nome: "Camisa Xadrez",
       descricao: "Camisa xadrez em tons de vermelho e preto.",
       preco: 84.99,
-      foto: "caminho_da_imagem"
+      foto: '../../assets/img/camisaLaranja.jpg'
     }
   ];
 
-  constructor() { }
+  constructor(private bdtempService: BdtempService) { }
 
   ngOnInit() {
   }
 
+ 
   addProdutoCarrinho(produto: any){
-    // Implemente a lógica para adicionar o produto ao carrinho aqui
+    this.bdtempService.addProdutoCarrinho(produto); // Use the injected service
+    this.buscarDadosCarrinho();
+  }
+
+  buscarDadosCarrinho(){
+    this.qtdeItensCarrinho = this.bdtempService.buscar('qtdeItensCarrinho');
   }
 
 }

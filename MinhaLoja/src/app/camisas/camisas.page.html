@@ -1,8 +1,23 @@
 <ion-header [translucent]="true">
-  <!-- ... cabeçalho ... -->
+  <ion-toolbar color="dark" class="ion-small-padding">
+    <ion-buttons slot="start">
+      <ion-back-button color="limao">Button</ion-back-button>
+    </ion-buttons>
+    <ion-title color="limao">camisas</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button color="prata">
+        <ion-icon name="cart-outline"></ion-icon>
+        <ion-badge color="limao">{{qtdeItensCarrinho}}</ion-badge>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+  <ion-searchbar animated="true" placeholder="Animated" color="dark"></ion-searchbar>
 </ion-header>
 
 <ion-content fullscreen="true">
+
   <ion-item lines="full" *ngFor="let produto of listaProdutos">
     <ion-thumbnail slot="start">
       <img [src]="produto.foto" />
@@ -18,5 +33,6 @@
     <ion-button expand="block" slot="end" color="dark" (click)="addProdutoCarrinho(produto)">
       <ion-icon slot="icon-only" name="cart-outline"></ion-icon>
     </ion-button>
+
   </ion-item>
 </ion-content>

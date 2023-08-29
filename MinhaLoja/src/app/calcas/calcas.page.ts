@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BdtempService } from '../services/bdtemp.service';
 
 @Component({
   selector: 'app-calcas',
@@ -41,13 +42,19 @@ export class CalcasPage implements OnInit {
     }
   ];
 
-  constructor() { }
+  constructor(private bdtempService: BdtempService) { }
 
   ngOnInit() {
   }
 
+ 
   addProdutoCarrinho(produto: any){
-    // Implemente a lógica para adicionar o produto ao carrinho aqui
+    this.bdtempService.addProdutoCarrinho(produto); // Use the injected service
+    this.buscarDadosCarrinho();
+  }
+
+  buscarDadosCarrinho(){
+    this.qtdeItensCarrinho = this.bdtempService.buscar('qtdeItensCarrinho');
   }
 
 }
